@@ -1,46 +1,32 @@
-Canary-Sentry
-=============
-<img width="2559" height="1318" alt="image" src="https://github.com/user-attachments/assets/56d9535d-ae65-4048-a11d-ab0faabcc36f" />
+Canary
+======
+<img width="2559" height="1320" alt="image" src="https://github.com/user-attachments/assets/6f94f5d8-967d-4d4c-9804-defede3d60f2" />
 
-Deceptive active defense and automated ransomware mitigation system for Windows.
+Deceptive active defense and automated process mitigation system.
 
-CANARY-SENTRY is a lightweight, modular, and powerful deceptive security system designed to monitor, identify, and neutralize suspicious filesystem transactions in real-time. Instead of evaluating static file signatures, it deploys high-priority filesystem decoys (canaries), continuously monitors their structural integrity via an asynchronous low-level threat detection loop, and automatically isolates threats using active process-termination countermeasures.
-
-Features
+Overview
 --------
+Canary is a lightweight, modular, and deceptive endpoint security utility designed to monitor filesystem integrity, analyze system telemetry, and neutralize cryptographic threats (ransomware) in real-time. By deploying high-priority filesystem decoys (canaries) in strategic system paths, it intercepts unauthorized encryption attempts and immediately terminates the offending process space.
 
-* Deceptive Filesystem Decoys: Dynamically provisions strategically-named canary files (_critical_ledger.docx, 00_database_backup.db, 0_auth_vault.txt) inside hidden Windows directories designed to be processed first alphabetically by automated directory traversal scripts.
+The interface is built with an ultra-minimalist, flat, high-contrast terminal design that occupies 100% of the screen height, presenting critical indicators without unnecessary overhead.
 
-* Asynchronous Telemetry Loop: Continuously audits decoy file metadata (timestamps, file sizes, existence states) utilizing a high-frequency polling thread to capture early-stage cryptographic alterations.
 
-* Multi-Vector Process Auditing: Instantly scans active process spaces upon decoy modification, checking open file handles, execution paths, and launch contexts via psutil to isolate the source of filesystem disruption.
+<img width="292" height="139" alt="image" src="https://github.com/user-attachments/assets/735eed21-ce9f-4358-a836-4787ee95d701" />
 
-* Active Mitigation Countermeasures: Terminates offending processes immediately (proc.terminate(), cascading to forced termination if necessary) to halt potential cascading encryption routines across user directories.
+Key Features
+------------
+* Alpha-Priority Decoy Ingestion: Provisions strategically named decoy structures (_critical_ledger.docx, 00_database_backup.db, 0_auth_vault.txt) designed to be processed first alphabetically by automated directory traversal scripts.
+* Full-Screen Diagnostic Console: A low-overhead, screen-adaptive operations interface featuring instant system metrics, connection monitoring, and raw live log feeds.
+* Active Isolation Countermeasures: Instantly evaluates active process spaces on file modification and executes kernel-level terminations (proc.terminate()) to block cascading encryption routines.
+* Forensic Event Ledger: Logs comprehensive alert payloads (PIDs, parent PIDs, execution contexts, CLI parameters, and mitigation states) in a thread-safe SQLite database.
 
-* Automated Canary Re-provisioning: Automatically regenerates modified or deleted canary structures with randomized mock text strings, ensuring persistent protection barriers during multi-stage or concurrent attacks.
-
-* Forensic Ledger Database: Appends comprehensive incident metadata (PIDs, parent PIDs, execution contexts, command-line parameters, and mitigation states) to a thread-safe local database (canary_sentry.db).
-
-* Server-Sent Events (SSE) Stream: Emits real-time forensic event payloads to connected analytical consoles over a persistent, low-overhead HTTP connection.
-
-* Tactical HUD Console: Serves a highly responsive cyber operations console featuring system diagnostic readouts, dynamic mitigation counters, and glowing real-time threat alerts representing blocked activities.
-
-How to run
-----------
-
-1. Administrative Access: Open PowerShell (or Windows Terminal) as an Administrator to ensure complete access to system-level process spaces and handle audits.
-
-2. Clone the Repository: Clone or download the project files into your local workspace.
-
-3. Install Dependencies: Ensure Python 3.7+ and the process telemetry library are installed:
-
+Installation and Execution
+--------------------------
+1. Install the process monitoring library:
    pip install psutil
 
-4. Launch the Engine: Start the telemetry orchestrator and local server:
-
+2. Execute the telemetry server with Administrative privileges (required to terminate hostile process handles):
    python server.py
 
-Configuration
--------------
-
-The engine is preconfigured to function out of the box. Decoy pathways and target paths are resolved automatically based on host OS parameters, utilizing standardized fallbacks in non-Windows testing environments.
+3. Open the diagnostics console in your browser:
+   http://127.0.0.1:9090
