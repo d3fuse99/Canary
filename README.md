@@ -1,32 +1,42 @@
-Canary
-======
-<img width="2559" height="1320" alt="image" src="https://github.com/user-attachments/assets/6f94f5d8-967d-4d4c-9804-defede3d60f2" />
+Canary Active Defense
+=====================
+<img width="2559" height="1351" alt="изображение" src="https://github.com/user-attachments/assets/0b61684a-e678-4ba8-9497-7710e69d2bee" />
 
-Deceptive active defense and automated process mitigation system.
+Self-healing EDR-simulator and deceptive ransomware mitigation engine for Windows.
 
 Overview
 --------
-Canary is a lightweight, modular, and deceptive endpoint security utility designed to monitor filesystem integrity, analyze system telemetry, and neutralize cryptographic threats (ransomware) in real-time. By deploying high-priority filesystem decoys (canaries) in strategic system paths, it intercepts unauthorized encryption attempts and immediately terminates the offending process space.
+Canary is an industrial-grade deceptive endpoint security utility designed to monitor filesystem integrity, analyze system telemetry, and neutralize cryptographic threats (ransomware) in real-time. By deploying high-priority filesystem decoys (canaries) in strategic system paths, it intercepts unauthorized encryption attempts and immediately terminates the offending process space.
 
-The interface is built with an ultra-minimalist, flat, high-contrast terminal design that occupies 100% of the screen height, presenting critical indicators without unnecessary overhead.
+The interface is built with an ultra-minimalist, flat, high-contrast terminal design that occupies 100% of the screen height, presenting critical indicators, dynamic metrics, and an animated system diagnostic boot feed.
 
+Project Structure
+-----------------
+<img width="309" height="261" alt="изображение" src="https://github.com/user-attachments/assets/e206578a-da1e-4ec2-bec1-29258e0ecc78" />
 
-<img width="292" height="139" alt="image" src="https://github.com/user-attachments/assets/735eed21-ce9f-4358-a836-4787ee95d701" />
 
 Key Features
 ------------
-* Alpha-Priority Decoy Ingestion: Provisions strategically named decoy structures (_critical_ledger.docx, 00_database_backup.db, 0_auth_vault.txt) designed to be processed first alphabetically by automated directory traversal scripts.
-* Full-Screen Diagnostic Console: A low-overhead, screen-adaptive operations interface featuring instant system metrics, connection monitoring, and raw live log feeds.
+* Alpha-Priority Decoy Ingestion: Provisions strategically named decoy structures (_critical_ledger.docx, 00_database_backup.db, 0_auth_vault.txt) in hidden system paths to guarantee first-read priority by directory traversal scripts.
 * Active Isolation Countermeasures: Instantly evaluates active process spaces on file modification and executes kernel-level terminations (proc.terminate()) to block cascading encryption routines.
-* Forensic Event Ledger: Logs comprehensive alert payloads (PIDs, parent PIDs, execution contexts, CLI parameters, and mitigation states) in a thread-safe SQLite database.
+* Self-Healing Fallbacks: If standard execution fails due to write-protection or access-denied exceptions on native paths (C:\ProgramData), the engine dynamically falls back to local storage pathing.
+* Forensic Event Ledger: Logs comprehensive alert payloads (PIDs, parent PIDs, execution contexts, and mitigation states) in a thread-safe SQLite database, with automatic record truncation and database vacuuming.
+* Interactive Simulation Mode: Includes an on-demand "Run Threat Simulation" test trigger to verify EDR telemetry pipeline stability without affecting real system files.
 
 Installation and Execution
 --------------------------
-1. Install the process monitoring library:
-   pip install psutil
+To launch Canary on Windows, simply double-click the run.bat launcher. It automatically verifies your environment, installs dependencies, and boots the console:
 
-2. Execute the telemetry server with Administrative privileges (required to terminate hostile process handles):
-   python server.py
+1. Execute the launcher:
+   run.bat
 
-3. Open the diagnostics console in your browser:
+2. Access the console (opens automatically):
    http://127.0.0.1:9090
+
+Manual Execution
+----------------
+1. Install dependencies:
+   pip install -r requirements.txt
+
+2. Run server natively with Administrative privileges (required to terminate hostile process handles):
+   python server.py
