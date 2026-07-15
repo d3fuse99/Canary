@@ -1,5 +1,6 @@
 Canary Active Defense
 =====================
+<img width="2559" height="1351" alt="изображение" src="https://github.com/user-attachments/assets/beeaaaa1-9b43-4b37-92f0-359e744d3dcd" />
 
 Self-healing EDR-simulator and deceptive ransomware mitigation engine with interactive trust policies.
 
@@ -11,15 +12,8 @@ The interface is built with an ultra-minimalist, flat, high-contrast terminal de
 
 Project Structure
 -----------------
-* run.bat          - Double-click Windows launcher (handles environment checks and auto-dependency installation).
-* config.py        - Centralized configuration (network parameters, intervals, whitelisted exceptions).
-* db.py            - SQLite transaction manager (includes automatic disk footprint compression via VACUUM).
-* monitor.py       - Active threat detection loop, handle analysis, and process mitigation.
-* server.py        - Event stream (SSE) orchestrator and local HTTP static server.
-* index.html       - Full-screen, responsive, SAST-compliant HTML5 diagnostic console (includes animated boot logs).
-* requirements.txt - Declared library dependencies.
-* Dockerfile       - Lightweight containerization config.
-* .gitignore       - Standard repository safety rules.
+<img width="309" height="261" alt="изображение" src="https://github.com/user-attachments/assets/d79e0ea1-b634-472e-852b-02504f001f6e" />
+
 
 Key Features
 ------------
