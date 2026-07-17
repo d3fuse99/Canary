@@ -1,8 +1,7 @@
 Canary Active Defense
 =====================
-<img width="2559" height="1351" alt="изображение" src="https://github.com/user-attachments/assets/beeaaaa1-9b43-4b37-92f0-359e744d3dcd" />
 
-Self-healing EDR-simulator and deceptive ransomware mitigation engine with interactive trust policies.
+Self-healing EDR-simulator and deceptive ransomware mitigation engine with dynamic trust policies and SIEM telemetry forwarding.
 
 Overview
 --------
@@ -12,8 +11,16 @@ The interface is built with an ultra-minimalist, flat, high-contrast terminal de
 
 Project Structure
 -----------------
-<img width="309" height="261" alt="изображение" src="https://github.com/user-attachments/assets/d79e0ea1-b634-472e-852b-02504f001f6e" />
-
+* run.bat          - Double-click Windows launcher (handles environment checks and auto-dependency installation).
+* config.py        - Centralized configuration (network parameters, intervals, whitelisted exceptions).
+* db.py            - SQLite transaction manager (includes automatic disk footprint compression via VACUUM).
+* siem.py          - UDP socket broadcaster for real-time JSON log streaming to SIEM collectors.
+* monitor.py       - Active threat detection loop, Shannon entropy file analysis, and process mitigation.
+* server.py        - Event stream (SSE) orchestrator, local HTTP static server, and raw JSON export.
+* index.html       - Full-screen, responsive, SAST-compliant HTML5 diagnostic console (includes animated boot logs).
+* requirements.txt - Declared library dependencies.
+* Dockerfile       - Lightweight containerization config.
+* .gitignore       - Standard repository safety rules.
 
 Key Features
 ------------
@@ -21,9 +28,11 @@ Key Features
 * Active Isolation Countermeasures: Instantly evaluates active process spaces on file modification and executes kernel-level terminations (proc.terminate()) to block cascading encryption routines.
 * Self-Healing Fallbacks: If standard execution fails due to write-protection or access-denied exceptions on native paths (C:\ProgramData\), the engine dynamically falls back to local storage pathing.
 * Interactive Database Whitelisting: Features a live, database-driven policy control loop. Administrators can dynamically authorize blocked processes directly from the UI using the "Trust & Whitelist Process" action, instantly updating global policies without restarting the engine.
+* Shannon Entropy Parser: Calculates the real-time entropy of written data on decoy modification. Values near 8.00 bits per byte indicate high-density mathematical signatures (encryption), automatically triggering maximum threat alerts.
+* Forensic SHA-256 Hashing: Automatically computes the SHA-256 cryptographic checksum of hostile binaries during active mitigation events for immediate IOC evaluation.
+* SIEM Telemetry Streaming: Broadcasts structured JSON audit logs over standard UDP syslog pathways directly to Wazuh, Splunk, or ELK collectors.
+* Raw JSON Audit Export: Exposes a direct, one-click export button in the HUD to download the entire SQLite ledger history as a standard JSON report.
 * Secure DOM Generation (SAST Zero-Findings): Node rendering utilizes safe web DOM elements (document.createElement and textContent) instead of .innerHTML to enforce absolute client-side protection against XSS and HTML injection.
-* Forensic Event Ledger: Logs comprehensive alert payloads (PIDs, parent PIDs, execution contexts, and mitigation states) in a thread-safe SQLite database, with automatic record truncation and database vacuuming.
-* Interactive Simulation Mode: Includes an on-demand "Run Threat Simulation" test trigger to verify EDR telemetry pipeline stability without affecting real system files.
 
 Installation and Execution
 --------------------------
