@@ -1,4 +1,6 @@
 Canary Active Defense
+<img width="2554" height="1351" alt="изображение" src="https://github.com/user-attachments/assets/ea1ea436-e3ca-417e-81ba-ed558c2f2c2b" />
+
 =====================
 
 Self-healing EDR-simulator and deceptive ransomware mitigation engine with dynamic trust policies and SIEM telemetry forwarding.
